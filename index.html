@@ -6,8 +6,6 @@
     <link rel="stylesheet" href="style.css">
     <title>Welcome to Firebase Hosting</title>
 
-<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
 
     <!-- update the version number as needed -->
     <script defer src="/__/firebase/7.8.2/firebase-app.js"></script>
@@ -117,18 +115,6 @@ function add_accept_list(num) {
   cells[3].innerHTML = '';
   return;
 }
-
-// Initialize Cloud Firestore through Firebase
-firebase.initializeApp({
-  apiKey: '### FIREBASE API KEY ###',
-  authDomain: '### FIREBASE AUTH DOMAIN ###',
-  projectId: '### CLOUD FIRESTORE PROJECT ID ###'
-});
-
-var db = firebase.firestore();
-
-
-
 </script>
 
 
@@ -166,6 +152,11 @@ var db = firebase.firestore();
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/7.8.2/firebase-analytics.js"></script>
+
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.2.3/firebase-firestore.js"></script>
+
+
 
 <script>
   // Your web app's Firebase configuration
