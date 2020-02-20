@@ -182,6 +182,14 @@ var db = firebase.firestore();
   // Initialize Firebase
   firebase.initializeApp(firebaseConfig);
   firebase.analytics();
+
+  var db = firebase.firestore();
+
+db.collection("users").get().then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+        console.log(doc.data())
+    });
+});	
 </script>
  
   </body>
