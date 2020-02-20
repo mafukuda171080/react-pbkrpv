@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Welcome to Firebase Hosting</title>
+
+    <!-- update the version number as needed -->
+    <script defer src="/__/firebase/7.8.2/firebase-app.js"></script>
+    <!-- include only the Firebase features as you need -->
+    <script defer src="/__/firebase/7.8.2/firebase-auth.js"></script>
+    <script defer src="/__/firebase/7.8.2/firebase-database.js"></script>
+    <script defer src="/__/firebase/7.8.2/firebase-messaging.js"></script>
+    <script defer src="/__/firebase/7.8.2/firebase-storage.js"></script>
+    <link rel="stylesheet"  href="./style.css">
+
+    <!-- initialize the SDK after all desired features are loaded -->
+    <script defer src="/__/firebase/init.js"></script>
+
+    <style media="screen">
+      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
+      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
+      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
+      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
+      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
+      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
+      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
+      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
+      @media (max-width: 600px) {
+        body, #message { margin-top: 0; background: white; box-shadow: none; }
+        body { border-top: 16px solid #ffa100; }
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    <div id="message">
+      <h2>Welcome</h2>
+      <h1>Firebase Hosting Setup Complete</h1>
+      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
+      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    </div>
+
+    <p id="load">Firebase SDK Loading&hellip;</p>
+    -->
+
+
+<div class="container">
+<select id='num'>
+  <option>1</option>
+  <option>2</option>
+  <option>3</option>
+  <option>4</option>
+  <option>5</option>
+  <option>6</option>
+  <option>7</option>
+  <option>8</option>
+  <option>9</option>
+</select>
+
+
+<a href="#" class="btn1-icon"id="accept">受付</a>
+</div>
+
+<table id="accept_list">
+  <tr>
+    <th>ステータス</th>
+    <th>受付番号</th>
+    <th>人数</th>
+    <th>備考</th>
+  </tr>
+  <tr>
+    <td>案内済</td>
+    <td>218</td>
+    <td>1人</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>不在</td>
+    <td>219</td>
+    <td>6人</td>
+    <td>呼び出しました</td>
+  </tr>
+  <tr>
+    <td>案内待</td>
+    <td>220</td>
+    <td>4人</td>
+    <td></td>
+  </tr>
+</table>
+
+
+<script>
+var count = 1;
+var accept_btn = document.getElementById('accept');
+var accept_list = document.getElementById('accept_list');
+
+var status_list = "<select><option>案内待ち</option><option>案内済み</option><option>不在</option> </select>";
+
+accept_btn.addEventListener('click', function() {
+    count++;
+    if (count > 100) {
+      count = 1;
+    }
+    console.log('クリックされました。count:' + count);
+    var num = document.getElementById('num');
+    console.log(num.value);
+    add_accept_list(num.value);
+
+}, false);
+
+function add_accept_list(num) {
+  // 行を行末に追加
+  var row = accept_list.insertRow(-1);
+  //td分追加
+  var cells = [];
+  cells[0] = row.insertCell(-1);
+  cells[1] = row.insertCell(-1);
+  cells[2] = row.insertCell(-1);
+  cells[3] = row.insertCell(-1);
+
+  // セルの内容入力
+  cells[0].innerHTML = status_list;
+  cells[1].innerHTML = count;
+  cells[2].innerHTML = num;
+  cells[3].innerHTML = '';
+  return;
+}
+
+
+</script>
+
+
+
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+        // // The Firebase SDK is initialized and available here!
+        //
+        // firebase.auth().onAuthStateChanged(user => { });
+        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+        // firebase.messaging().requestPermission().then(() => { });
+        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+        //
+        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+        try {
+          let app = firebase.app();
+          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
+          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+        } catch (e) {
+          console.error(e);
+          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+        }
+
+
+      });
+    </script>
+  </body>
+</html>
